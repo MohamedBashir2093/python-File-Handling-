@@ -1,7 +1,7 @@
 def create_sample_file():
     with open("sample.txt", "w") as file:
         file.write("Hello, world!\nThis is a test file.")
-    print("✅ 'sample.txt' created successfully.")
+    print(" 'sample.txt' created successfully.")
 
 
 

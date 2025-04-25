@@ -1,38 +1,27 @@
-def create_sample_file():
-    with open("sample.txt", "w") as file:
-        file.write("Hello, world!\nThis is a test file.")
-    print(" 'sample.txt' created successfully.")
-
-
-
-def modify_file_content(text):
-    return text.upper()
-
-def main():
-    create_sample_file()  
+def read_and_write_modified_file():
+    source = input("Enter the source filename: ")
+    destination = input("Enter the destination filename: ")
 
     try:
-        input_filename = input("Enter the name of the file to read: ")
+        # Attempt to read the source file
+        with open(source, 'r') as src_file:
+            content = src_file.read()
+            print("Original content read successfully.")
 
-        with open(input_filename, 'r') as infile:
-            content = infile.read()
-            print("\nOriginal Content:\n")
-            print(content)
+        # Modify the content 
+        modified_content = content.upper()
 
-        modified_content = modify_file_content(content)
-
-        output_filename = "modified_" + input_filename
-        with open(output_filename, 'w') as outfile:
-            outfile.write(modified_content)
-
-        print(f"\nModified content written to '{output_filename}' successfully.")
+        
+        with open(destination, 'w') as dest_file:
+            dest_file.write(modified_content)
+            print(f"Modified content written to '{destination}'.")
 
     except FileNotFoundError:
-        print("❌ Error: The file was not found.")
+        print(f"Error: The file '{source}' does not exist.")
     except PermissionError:
-        print("❌ Error: You don't have permission to read this file.")
+        print("Error: You don't have permission to read or write the file.")
     except Exception as e:
-        print(f"❌ An unexpected error occurred: {e}")
+        print(f"An unexpected error occurred: {e}")
 
-if __name__ == "__main__":
-    main()
+# Run the program
+read_and_write_modified_file() 
